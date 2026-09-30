@@ -1,0 +1,8 @@
+# Nada de conversión de saltos de línea: las imágenes son binarias y los
+# fragmentos de content/ vienen de WordPress con CRLF.
+* -text
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary
