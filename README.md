@@ -66,6 +66,9 @@ El sitio es bilingüe: inglés en la raíz, español en `es/`. En WordPress las
 páginas en español existían pero no eran accesibles desde ningún menú; aquí
 tienen su propio menú y un selector EN/ES en la barra lateral.
 
+Todas las páginas del menú existen ya en los dos idiomas salvo las que siguen
+pendientes de contenido (ver más abajo).
+
 ## Páginas pendientes de contenido
 
 Estas doce páginas están en el menú pero todavía no tienen contenido (en
@@ -75,13 +78,12 @@ un aviso de "en construcción" hasta que se rellenen: crea el fragmento
 
 | Página | Inglés | Español |
 |---|---|---|
-| EURITMIA        | falta | falta |
+| EURITMIA              | falta | falta |
 | THE STORY / EL CUENTO | falta | falta |
-| MONICA          | falta | falta |
-| SIPAR           | falta | falta |
-| GAME / JUEGO    | falta | falta |
-| AT DAWN / A L'AUBE | falta | **ya existe** |
-| ALÉTHEIA        | **ya existe** | falta |
+| MONICA                | falta | falta |
+| SIPAR                 | falta | falta |
+| GAME / JUEGO          | falta | falta |
+| GITHUB PROJECTS / PROYECTOS GITHUB | falta | falta |
 
 ## Publicar en GitHub Pages
 

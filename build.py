@@ -144,8 +144,6 @@ def build_page(lang, page, lang_cfg):
         'skip': html.escape(lang_cfg['skip']),
         'open_menu': html.escape(lang_cfg['open_menu']),
         'sidebar_label': html.escape(lang_cfg['sidebar_label']),
-        'lenguajeo_url': SITE['lenguajeo_url'],
-        'lenguajeo_button': html.escape(lang_cfg['lenguajeo_button']),
         'footer': html.escape(SITE['footer']),
         'title': html.escape(title),
         'menu': render_menu(lang_cfg, page),

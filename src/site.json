@@ -1,7 +1,6 @@
 {
   "site_title": "Enrico Mandirola",
   "tagline": "KinoLab07",
-  "lenguajeo_url": "https://lenguajeo.kinolab07.co/",
   "footer": "© Enrico Mandirola — KinoLab07",
   "languages": {
     "en": {
@@ -11,7 +10,6 @@
       "skip": "Press \"Enter\" to skip to content",
       "open_menu": "open menu",
       "sidebar_label": "Sidebar",
-      "lenguajeo_button": "Ir a Lenguajeo",
       "pending_title": "Page under construction",
       "pending_body": "The content of this page is not published yet.",
       "titles": {
@@ -31,18 +29,48 @@
         "memories-of-san-pedro": "MEMORIES OF SAN PEDRO",
         "memories-of-san-pedro-ii": "MEMORIES OF SAN PEDRO – II",
         "plastic-art": "PLASTIC ART",
-        "light-messages": "LIGHT MESSAGES"
+        "light-messages": "LIGHT MESSAGES",
+        "github-projects": "GITHUB PROJECTS"
       },
       "menu": [
-        {"page": "index"},
-        {"page": "biography"},
-        {"page": "cv"},
-        {"page": "filmmaker", "children": [
-          "walking-language", "aletheia", "euritmia",
-          "the-story", "a-laube", "monica", "sipar", "game"]},
-        {"page": "photography", "children": [
-          "memories-of-san-pedro", "memories-of-san-pedro-ii"]},
-        {"page": "plastic-art", "children": ["light-messages"]}
+        {
+          "page": "index"
+        },
+        {
+          "page": "biography"
+        },
+        {
+          "page": "cv"
+        },
+        {
+          "page": "filmmaker",
+          "children": [
+            "walking-language",
+            "aletheia",
+            "euritmia",
+            "the-story",
+            "a-laube",
+            "monica",
+            "sipar",
+            "game"
+          ]
+        },
+        {
+          "page": "photography",
+          "children": [
+            "memories-of-san-pedro",
+            "memories-of-san-pedro-ii"
+          ]
+        },
+        {
+          "page": "plastic-art",
+          "children": [
+            "light-messages"
+          ]
+        },
+        {
+          "page": "github-projects"
+        }
       ]
     },
     "es": {
@@ -52,7 +80,6 @@
       "skip": "Pulsa \"Intro\" para saltar al contenido",
       "open_menu": "abrir menú",
       "sidebar_label": "Barra lateral",
-      "lenguajeo_button": "Ir a Lenguajeo",
       "pending_title": "Página en construcción",
       "pending_body": "El contenido de esta página todavía no está publicado.",
       "titles": {
@@ -72,18 +99,48 @@
         "memories-of-san-pedro": "MEMORIAS DEL SAN PEDRO",
         "memories-of-san-pedro-ii": "MEMORIAS DEL SAN PEDRO – II",
         "plastic-art": "ARTES PLASTICAS",
-        "light-messages": "MENSAJES DE LUZ"
+        "light-messages": "MENSAJES DE LUZ",
+        "github-projects": "PROYECTOS GITHUB"
       },
       "menu": [
-        {"page": "index"},
-        {"page": "biography"},
-        {"page": "cv"},
-        {"page": "filmmaker", "children": [
-          "walking-language", "aletheia", "euritmia",
-          "the-story", "a-laube", "monica", "sipar", "game"]},
-        {"page": "photography", "children": [
-          "memories-of-san-pedro", "memories-of-san-pedro-ii"]},
-        {"page": "plastic-art", "children": ["light-messages"]}
+        {
+          "page": "index"
+        },
+        {
+          "page": "biography"
+        },
+        {
+          "page": "cv"
+        },
+        {
+          "page": "filmmaker",
+          "children": [
+            "walking-language",
+            "aletheia",
+            "euritmia",
+            "the-story",
+            "a-laube",
+            "monica",
+            "sipar",
+            "game"
+          ]
+        },
+        {
+          "page": "photography",
+          "children": [
+            "memories-of-san-pedro",
+            "memories-of-san-pedro-ii"
+          ]
+        },
+        {
+          "page": "plastic-art",
+          "children": [
+            "light-messages"
+          ]
+        },
+        {
+          "page": "github-projects"
+        }
       ]
     }
   }
