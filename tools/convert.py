@@ -2,6 +2,7 @@
 """Convierte el HTML de bloques de WordPress (reference/pages.json)
 en fragmentos HTML limpios dentro de content/{en,es}/."""
 import json, os, re, html
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMG_MAP = json.load(open(f'{ROOT}/reference/image-map.json'))
@@ -57,6 +58,21 @@ PAGE_ID_TO_PAGE = {  # los ?page_id= que aún aparecen en el contenido
     '482': 'euritmia', '461': 'the-story', '525': 'at-dawn',
     '719': 'monica', '420': 'sipar', '193': 'game', '672': 'a-laube',
 }
+
+def display_size(src, new_name):
+    """Dimensiones a las que WordPress mostraba la imagen.
+
+    WordPress servía versiones redimensionadas (`foo-189x1024.jpg`) y aquí
+    guardamos siempre el original, que puede ser mucho mayor. Sin declarar el
+    tamaño que tenía la variante, el navegador maquetaría con otra escala.
+    """
+    base = html.unescape(os.path.basename(src.split('?')[0]))
+    m = re.search(r'-(\d+)x(\d+)\.[A-Za-z]+$', base)
+    if m:
+        return int(m.group(1)), int(m.group(2))
+    with Image.open(f'{ROOT}/assets/images/{new_name}') as im:
+        return im.size
+
 
 def local_image(src):
     base = os.path.basename(src.split('?')[0])
@@ -161,10 +177,14 @@ def convert(content, lang):
         st  = re.search(r'style="([^"]*)"', a)
         w   = re.search(r'width="(\d+)"', a)
         h   = re.search(r'height="(\d+)"', a)
-        parts = [f'src="assets/images/{local_image(src.group(1))}"']
+        name = local_image(src.group(1))
+        parts = [f'src="assets/images/{name}"']
         parts.append(f'alt="{alt.group(1) if alt else ""}"')
-        if w: parts.append(f'width="{w.group(1)}"')
-        if h: parts.append(f'height="{h.group(1)}"')
+        if w and h:
+            parts.append(f'width="{w.group(1)}" height="{h.group(1)}"')
+        else:
+            dw, dh = display_size(src.group(1), name)
+            parts.append(f'width="{dw}" height="{dh}"')
         if st:
             s = re.sub(r'aspect-ratio:[^;]*;?', '', st.group(1)).strip()
             if s: parts.append(f'style="{s}"')

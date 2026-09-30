@@ -7,6 +7,11 @@ El resultado es visualmente idéntico al sitio publicado: mismos colores, misma
 tipografía (Open Sans 300/600), mismos anchos y los mismos puntos de corte
 responsive. Ya no carga jQuery, jQuery Migrate, wp-emoji ni Font Awesome.
 
+La fidelidad está verificada: la altura de cada página coincide con la publicada
+(ver la tabla en [AUDITORIA.md](AUDITORIA.md)) y el texto de las 22 páginas
+coincide palabra por palabra. La única diferencia intencionada es la home, donde
+se ha arreglado una imagen que en producción da 404.
+
 ## Estructura
 
 ```

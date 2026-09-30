@@ -33,3 +33,37 @@
 - `reference/assets/production.min.js` — el JS del tema.
 - `reference/assets/images/` — las 65 imágenes originales (43 MB).
 - `reference/pages.json` — volcado de la REST API con el contenido de cada página.
+
+## Hallazgos posteriores (durante la reconstrucción)
+
+8. **La home tiene una imagen rota en producción.** El bloque final de NEWS
+   enlaza `Memoria-del-San-Pedro-â-Negativo-6-1-1024x335.jpg`; ese nombre trae
+   el guion largo mal codificado (`â` en vez de `–`) y da 404. El archivo sí
+   existe en el servidor con el nombre correcto. En la versión nueva se enlaza
+   bien, así que la home mide 105 px más de alto que la publicada — es la única
+   diferencia de maquetación intencionada.
+9. **WordPress servía miniaturas, no los originales.** Por ejemplo
+   `Prueba_SanPedro_II-189x1024.jpg`. Al usar los archivos originales hay que
+   declarar `width`/`height` en cada `<img>` para conservar la escala; `build.py`
+   lo hace a partir del sufijo de tamaño de la URL original.
+
+## Comprobación de fidelidad
+
+Medido en un viewport de 1280×900, con todas las imágenes cargadas:
+
+| Página | Reconstruida | Publicada |
+|---|---:|---:|
+| NEWS | 1077 px | 972 px *(imagen rota en la publicada)* |
+| BIOGRAPHY | 1093 px | 1093 px |
+| CV | 5138 px | 5138 px |
+| FILMMAKER | 1277 px | 1280 px |
+| WALKING LANGUAGE | 1232 px | 1232 px |
+| ALÉTHEIA | 1842 px | 1842 px |
+| PHOTOGRAPHY | 972 px | 972 px |
+| MEMORIES OF SAN PEDRO | 6538 px | 6538 px |
+| MEMORIES OF SAN PEDRO II | 1795 px | 1794 px |
+| PLASTIC ART | 972 px | 972 px |
+| LIGHT MESSAGES | 972 px | 972 px |
+
+Las diferencias de 1–3 px son redondeo al escalar imágenes. El texto de las 22
+páginas coincide palabra por palabra con el que devuelve la REST API.
