@@ -5,7 +5,8 @@ en WordPress (tema Cele) para poder editarlo sin depender de WordPress.
 
 El resultado es visualmente idéntico al sitio publicado: mismos colores, misma
 tipografía (Open Sans 300/600), mismos anchos y los mismos puntos de corte
-responsive. Ya no carga jQuery, jQuery Migrate, wp-emoji ni Font Awesome.
+responsive. Ya no carga jQuery, jQuery Migrate, wp-emoji ni Font Awesome, y la
+tipografía se sirve desde el propio sitio en lugar de pedírsela a Google.
 
 La fidelidad está verificada: la altura de cada página coincide con la publicada
 (ver la tabla en [AUDITORIA.md](AUDITORIA.md)) y el texto de las 22 páginas
@@ -25,6 +26,8 @@ se ha arreglado una imagen que en producción da 404.
 │   └── es/*.html         contenido de cada página en español
 ├── assets/
 │   ├── css/style.css     toda la hoja de estilo
+│   ├── css/fuentes.css   las @font-face de Open Sans
+│   ├── fonts/            Open Sans (4 archivos woff2)
 │   ├── js/menu.js        menú hamburguesa y desplegables
 │   └── images/           65 imágenes
 ├── reference/            material original de WordPress (solo consulta)
@@ -42,11 +45,39 @@ Edita `content/` o `src/` y vuelve a ejecutar `python3 build.py`.
 ## Cómo trabajar
 
 ```bash
-python3 build.py                 # regenera las 34 páginas
+python3 build.py                 # regenera las páginas
 python3 -m http.server 4707      # y abre http://localhost:4707
 ```
 
 No hace falta instalar nada: solo Python 3.
+
+### Probarlo entero sin conexión
+
+El botón "Ir a Lenguajeo" apunta al dominio real, así que sin internet no
+lleva a ninguna parte. Con `--local` apunta al servidor local del otro
+repositorio:
+
+```bash
+./tools/probar-offline.sh
+```
+
+Eso genera el sitio en modo local y levanta los dos: kinolab07 en el 4707 y
+Lenguajeo en el 4708. Si Lenguajeo no está en `../lenguajeo-web`, se le pasa la
+ruta como argumento.
+
+**Antes de publicar hay que volver a generar sin `--local`**, o el botón se
+queda apuntando a `localhost`:
+
+```bash
+python3 build.py
+```
+
+Las dos direcciones están en `src/site.json`, en `lenguajeo_url` y
+`lenguajeo_url_local`.
+
+Lo único que sigue necesitando internet son **los dos vídeos de Vimeo** de las
+páginas ALÉTHEIA y A L'AUBE, que están alojados en Vimeo y no en el sitio.
+Todo lo demás —tipografía incluida— se sirve desde el propio repositorio.
 
 ### Cambiar el texto o las imágenes de una página
 Edita el fragmento correspondiente en `content/en/` o `content/es/` y reconstruye.

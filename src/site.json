@@ -1,6 +1,8 @@
 {
   "site_title": "Enrico Mandirola",
   "tagline": "KinoLab07",
+  "lenguajeo_url": "https://lenguajeo.kinolab07.co/",
+  "lenguajeo_url_local": "http://localhost:4708/",
   "footer": "© Enrico Mandirola — KinoLab07",
   "languages": {
     "en": {

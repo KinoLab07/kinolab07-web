@@ -13,6 +13,11 @@ SITE = json.load(open(f'{ROOT}/src/site.json', encoding='utf-8'))
 TEMPLATE = open(f'{ROOT}/src/template.html', encoding='utf-8').read()
 BASE_URL = 'https://www.kinolab07.co'
 
+# Con --local, el botón "Ir a Lenguajeo" apunta al servidor local en vez de al
+# dominio, para poder probar los dos sitios juntos sin conexión.
+LOCAL = '--local' in sys.argv
+LENGUAJEO_URL = SITE['lenguajeo_url_local'] if LOCAL else SITE['lenguajeo_url']
+
 CHEV = ('<svg viewBox="0 0 10 6" aria-hidden="true" focusable="false">'
         '<path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" '
         'stroke-width="1.4"/></svg>')
@@ -113,6 +118,7 @@ def build_page(lang, page, lang_cfg):
     # las rutas de assets en los fragmentos son relativas a la raíz del sitio
     content = content.replace('src="assets/', f'src="{base}assets/')
     content = content.replace('href="assets/', f'href="{base}assets/')
+    content = content.replace('{{lenguajeo_url}}', LENGUAJEO_URL)
 
     head_title = (f'{SITE["site_title"]} – {SITE["tagline"]}' if page == 'index'
                   else f'{title} – {SITE["site_title"]}')
@@ -175,6 +181,9 @@ def main():
             if pending:
                 pendings.append(os.path.relpath(dest, ROOT))
     print(f'{built} páginas generadas.')
+    if LOCAL:
+        print(f'Modo local: "Ir a Lenguajeo" apunta a {LENGUAJEO_URL}')
+        print('Vuelve a ejecutar "python3 build.py" sin --local antes de publicar.')
     if pendings:
         print(f'{len(pendings)} sin contenido todavía:')
         for p in pendings:
