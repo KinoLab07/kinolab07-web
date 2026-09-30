@@ -202,6 +202,7 @@ def convert(content, lang):
     # entidades numéricas -> caracteres reales (los archivos son UTF-8)
     c = re.sub(r'&#(\d+);', lambda m: chr(int(m.group(1))), c)
     c = c.replace('&#038;', '&amp;')
+    c = c.replace('\r\n', '\n').replace('\r', '\n')   # WordPress usa CRLF
     return c.strip() + '\n'
 
 def cls_attr(v):
