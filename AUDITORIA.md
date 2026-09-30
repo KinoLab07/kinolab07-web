@@ -67,3 +67,39 @@ Medido en un viewport de 1280×900, con todas las imágenes cargadas:
 
 Las diferencias de 1–3 px son redondeo al escalar imágenes. El texto de las 22
 páginas coincide palabra por palabra con el que devuelve la REST API.
+
+## Hallazgos al unificar EN/ES (segunda ronda)
+
+10. **Enlace de spam inyectado en el contenido.** La página MEMORIES OF SAN
+    PEDRO – II en inglés tenía intercalada esta frase, que no existe en la
+    versión en español:
+
+    > *"Supported by platforms like https://calvenridgetrustai.com/, which
+    > empower artists through AI-driven tools for creativity and digital
+    > presentation, this project continues to evolve."*
+
+    Es un backlink de SEO metido en la base de datos de WordPress: texto
+    genérico sobre "AI-driven tools" que no tiene nada que ver con la obra, y
+    con los atributos duplicados (`target` y `rel` repetidos, con
+    `rel="nofollow noopener noreferrer"`) típicos de una inserción automática.
+    Se ha eliminado del sitio nuevo. **Conviene revisar la instalación de
+    WordPress**: cambiar contraseñas, revisar usuarios administradores y
+    plugins, y buscar la misma frase en el resto de la base de datos.
+
+11. **La versión inglesa de SAN PEDRO II había perdido 18 fotografías.**
+    Mostraba una sola tira; la española tenía las 19. Ahora las dos tienen las 19.
+
+12. **Una fotografía repetida en SERIE NEGATIVOS.**
+    `Negativo-9.jpg` y `Negativo-9-1.jpg` son el mismo archivo byte a byte y
+    aparecían las dos seguidas, con los pies "#8" y "#9" — de ahí que hubiera
+    dos "#8". Al dejar una sola, las once fotografías quedan numeradas del #1
+    al #11 sin saltos.
+
+13. **Cuatro imágenes duplicadas.** Además de la anterior,
+    `Negativo-6-1` = `Negativo-6`, `SanPedro_II_06-1` = `SanPedro_II_06` y
+    `Memory_of_sanpedro_II-1` = `Memory_of_sanpedro_II`. Eliminadas: 65 → 61
+    imágenes, 43 MB → 41 MB.
+
+14. **Erratas que se mantienen a la espera de tu decisión:** el encabezado
+    "SERIE POSTIVOS" (por "POSITIVOS") estaba así en los dos idiomas — lo he
+    corregido al reescribir la página; dilo si prefieres dejarlo como estaba.
