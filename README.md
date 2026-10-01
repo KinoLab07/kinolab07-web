@@ -13,6 +13,21 @@ La fidelidad está verificada: la altura de cada página coincide con la publica
 coincide palabra por palabra. La única diferencia intencionada es la home, donde
 se ha arreglado una imagen que en producción da 404.
 
+## ⚠️ El backup no debe subirse nunca a GitHub
+
+La carpeta `entrega-enrico` del escritorio **contiene contraseñas**. Su propia
+nota dice que el volcado va sin las tablas de usuarios, y es cierto para las
+tablas `DrB_*`, pero no para `kino_users`, `wpqx_users` ni las de clases: ahí
+hay dos cuentas de administrador con su hash de contraseña, el correo y tokens
+de sesión con direcciones IP.
+
+No está dentro de este repositorio y no debe entrar. Si alguna vez se copia
+aquí, Git la guardaría en el historial para siempre aunque luego se borre.
+
+Conviene además cambiar la contraseña de esas dos cuentas de WordPress, sobre
+todo si se reutiliza en algún otro sitio.
+
+
 ## Estructura
 
 ```

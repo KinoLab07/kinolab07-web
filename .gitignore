@@ -2,3 +2,8 @@
 *.pyc
 __pycache__/
 .claude/
+
+# El backup de WordPress lleva hashes de contraseña dentro. Fuera del repo.
+entrega-enrico/
+*.sql
+*.sql.gz
