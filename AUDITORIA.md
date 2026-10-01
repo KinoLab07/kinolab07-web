@@ -161,3 +161,63 @@ quedaba abierto.
     `wpqx_users` ni las de clases: ahí hay dos cuentas de administrador con su
     hash de contraseña (`$P$...`), el correo y tokens de sesión con direcciones
     IP. Ver la advertencia del README.
+
+## Unificación EN/ES de fotos y CV (1 de octubre de 2026)
+
+Las dos versiones de cada página mostraban las mismas fotos a tamaños
+distintos, y el CV usaba estructuras de maquetación diferentes. Ahora **las 17
+parejas coinciden en imágenes y en estructura**, comprobado archivo a archivo.
+
+### El CV
+
+Eran dos maquetaciones distintas del mismo contenido:
+
+- El inglés agrupaba cada sección en un `<p>` con las entradas separadas por
+  `<br>`, y metía las listas de festivales en un `<ul>` con viñetas.
+- El español ponía **cada línea en su propio `<h6>`**, con `<h6>` vacíos de
+  relleno entre secciones y los años subrayados con `<u>`.
+
+De ahí el interlineado distinto: `<p>` tiene margen de 1,5 em entre bloques y
+`<h6>` tiene margen cero. El español pasa a la estructura del inglés, y las
+tres listas con viñetas del inglés pasan a líneas como en español. Los dos
+quedan con **12 bloques, los mismos y con el mismo número de líneas cada uno**.
+
+### Las fotos
+
+Regla aplicada: misma medida en los dos idiomas, proporción real del archivo
+(se comprobó que ninguna queda deformada, desvío máximo del 0,5%) y sin
+agrandar más de lo que el autor ya hacía.
+
+| Página | Antes (EN / ES) | Ahora |
+|---|---|---|
+| BIOGRAPHY | 412 ancho / 300×224 | 412×307 |
+| EURITMIA | 654×368 / 690 ancho | 601×339 *(tamaño real; las dos agrandaban)* |
+| THE STORY | 269 y 271 / 335 y 333 | 269×179 y 271×180 |
+| A L'AUBE | 329×247 / 319 ancho | 319×240 |
+| GAME | 209×167 / tamaño real | tamaño real |
+| LIGHT MESSAGES | 347×230 / 354 ancho | 354×235 |
+| PLASTIC ART | 246×163 / 246 con recorte | 246×163 |
+| PHOTOGRAPHY | las cuatro forzadas a 309×86 | 309 de ancho, alto proporcional |
+
+En PHOTOGRAPHY el inglés forzaba las cuatro fichas a la misma caja, lo que
+**deformaba dos de ellas**: tienen proporción 2,08 y 2,24 y se estiraban a
+3,59. Ahora comparten ancho y cada una conserva su alto.
+
+Dos de las imágenes de THE STORY son originales de solo 200 y 203 píxeles de
+ancho; en el backup no hay versión mayor, así que a 269 se ven algo blandas.
+Si aparecen los originales en mejor resolución, se sustituyen y listo.
+
+### Envolturas sobrantes
+
+Al comparar estructuras aparecieron envoltorios que solo estaban en un idioma:
+un `<div>` que rodeaba todo el texto de JUEGO, otro alrededor de la rejilla de
+FILMMAKER, divs de maquetación de PDF en BIOGRAFÍA y un `<div>` de más en cada
+columna de FOTOGRAFÍAS. Fuera todos.
+
+### Páginas que no existen en ninguna parte
+
+**DESARROLLO ARMÓNICO**, **CHROMATIC FILMIC TERRITORIES / TERRITORIOS FÍLMICOS
+CROMÁTICOS** y la **ALÉTHEIA fotográfica** aparecen como fichas con imagen y
+pie en las páginas FILMMAKER y PHOTOGRAPHY, pero **no son enlaces y no existe
+ninguna página detrás**, ni publicada ni en borrador, ni en la web ni en el
+backup. Nunca se escribieron. Para que tengan página hay que redactarlas.
