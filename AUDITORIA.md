@@ -103,3 +103,61 @@ páginas coincide palabra por palabra con el que devuelve la REST API.
 14. **Erratas que se mantienen a la espera de tu decisión:** el encabezado
     "SERIE POSTIVOS" (por "POSITIVOS") estaba así en los dos idiomas — lo he
     corregido al reescribir la página; dilo si prefieres dejarlo como estaba.
+
+## Lo que apareció en el backup de WordPress (1 de octubre de 2026)
+
+El paquete `entrega-enrico` preparado por David Vega resolvió casi todo lo que
+quedaba abierto.
+
+15. **Las doce páginas que faltaban no se habían borrado: estaban en borrador.**
+    Por eso el menú daba 404 y por eso no salían en la API pública, que solo
+    devuelve lo publicado. Están todas en la tabla `DrB_posts`, con fecha de
+    modificación del **21 de julio de 2026** — el mismo día en que se neutralizó
+    el ataque de spam. Es muy probable que se despublicaran durante aquella
+    limpieza y nadie se diera cuenta.
+
+    | ID | Página | Idioma |
+    |---|---|---|
+    | 193 / 709 | GAME / JUEGO | EN / ES |
+    | 420 / 714 | SIPAR | EN / ES |
+    | 445 / 719 | MONICA | ES / EN |
+    | 461 / 699 | THE STORY / EL CUENTO | EN / ES |
+    | 482 / 704 | EURITMIA | EN / ES |
+    | 525 / 672 | AT DAWN / A L'AUBE | EN / ES |
+    | 527 / 679 | ALÉTHEIA | EN / ES |
+
+    Ojo al detalle de MONICA: la página en español es la 445 y la inglesa la
+    719, al revés que en el resto de las parejas.
+
+16. **Existían las versiones del autor de AT DAWN en inglés y ALÉTHEIA en
+    español**, que yo había traducido a mano. Las traducciones se han
+    sustituido por los textos originales de Enrico.
+
+17. **Las once imágenes que necesitaban esas páginas estaban en el backup.**
+    Siete eran nuevas; las otras cuatro resultaron ser duplicados exactos de
+    imágenes que ya teníamos. Total: 61 → 68 imágenes.
+
+18. **Había dos menús, y el español nunca se asignó a ninguna posición del
+    tema.** Se llamaban "HOME" (español) y "HOME ENGLISH" (inglés, asignado a
+    `primary`). Esa es la explicación de por qué todo el contenido en español
+    era inalcanzable. La estructura del menú español coincide con la que
+    habíamos reconstruido, salvo en un detalle: en FOTOGRAFÍAS el original
+    ponía MEMORIAS DEL SAN PEDRO – II **antes** que MEMORIAS DEL SAN PEDRO.
+    Aquí van en el mismo orden que en inglés; dilo si prefieres el original.
+
+19. **El enlace de spam sigue vivo en la base de datos.** `calvenridgetrustai.com`
+    aparece dos veces en el volcado del 30 de septiembre: en la página 327
+    (MEMORIES OF SAN PEDRO – II, publicada) y en una revisión. La limpieza de
+    julio se lo dejó. En el sitio nuevo ya no está, pero **sigue publicado en
+    el WordPress de hoy**. Conviene avisar a David.
+
+    El resto del spam sí se limpió bien: cero enlaces ocultos con
+    `position:absolute`, cero dominios de casino o apuestas, en los dos
+    WordPress.
+
+20. **El backup contiene contraseñas, al contrario de lo que dice su propia
+    nota.** `LEEME-para-Claude.md` afirma que el volcado va sin las tablas de
+    usuarios. Es cierto para las tablas `DrB_*`, pero **no** para `kino_users`,
+    `wpqx_users` ni las de clases: ahí hay dos cuentas de administrador con su
+    hash de contraseña (`$P$...`), el correo y tokens de sesión con direcciones
+    IP. Ver la advertencia del README.

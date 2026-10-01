@@ -102,19 +102,19 @@ pendientes de contenido (ver más abajo).
 
 ## Páginas pendientes de contenido
 
-Estas doce páginas están en el menú pero todavía no tienen contenido (en
-WordPress los enlaces daban 404 porque las páginas se habían borrado). Muestran
-un aviso de "en construcción" hasta que se rellenen: crea el fragmento
-`content/en/<pagina>.html` o `content/es/<pagina>.html` y reconstruye.
+Solo quedan **GITHUB PROJECTS / PROYECTOS GITHUB**, a la espera de saber qué va
+dentro. Muestran un aviso de "en construcción".
 
-| Página | Inglés | Español |
-|---|---|---|
-| EURITMIA              | falta | falta |
-| THE STORY / EL CUENTO | falta | falta |
-| MONICA                | falta | falta |
-| SIPAR                 | falta | falta |
-| GAME / JUEGO          | falta | falta |
-| GITHUB PROJECTS / PROYECTOS GITHUB | falta | falta |
+Las otras doce que faltaban se recuperaron del backup de WordPress: EURITMIA,
+THE STORY / EL CUENTO, MONICA, SIPAR, GAME / JUEGO y AT DAWN / A L'AUBE, en los
+dos idiomas. No se habían borrado, estaban guardadas como borrador, que es por
+lo que el menú daba 404 y por lo que no salían en la API pública.
+
+Para repetir la importación:
+
+```bash
+python3 tools/importar-borradores.py ~/Desktop/entrega-enrico/kinolab07.co/base-2026-09-30.sql
+```
 
 ## Publicar en GitHub Pages
 

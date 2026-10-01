@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Convierte el HTML de bloques de WordPress (reference/pages.json)
 en fragmentos HTML limpios dentro de content/{en,es}/."""
-import json, os, re, html
+import json, os, re, html, sys
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,13 +136,24 @@ def convert(content, lang):
 
     # --- embeds de Vimeo -> iframe responsivo propio ---
     def embed(m):
-        vid = re.search(r'vimeo\.com/(?:video/)?(\d+)', m.group(0))
-        if not vid:
-            return ''
-        return (f'<div class="video">'
-                f'<iframe src="https://player.vimeo.com/video/{vid.group(1)}?dnt=1" '
-                f'title="Vimeo" loading="lazy" allow="fullscreen; picture-in-picture" '
-                f'allowfullscreen></iframe></div>')
+        bloque = html.unescape(m.group(0))
+
+        v = re.search(r'vimeo\.com/(?:video/)?(\d+)', bloque)
+        if v:
+            return (f'<div class="video">'
+                    f'<iframe src="https://player.vimeo.com/video/{v.group(1)}?dnt=1" '
+                    f'title="Vimeo" loading="lazy" allow="fullscreen; picture-in-picture" '
+                    f'allowfullscreen></iframe></div>')
+
+        y = re.search(r'(?:youtube\.com/watch\?v=|youtu\.be/)([\w-]+)', bloque)
+        if y:
+            return (f'<div class="video">'
+                    f'<iframe src="https://www.youtube-nocookie.com/embed/{y.group(1)}" '
+                    f'title="YouTube" loading="lazy" '
+                    f'allow="accelerometer; clipboard-write; encrypted-media; '
+                    f'gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
+
+        raise SystemExit(f'bloque de vídeo que no sé convertir: {bloque[:120]}')
     c = re.sub(r'<figure class="wp-block-embed[^"]*".*?</figure>', embed, c, flags=re.S)
 
     # --- wp-block-cover -> separador vertical, conservando su contenido ---
@@ -242,6 +253,19 @@ def extra_col(tag):
     return out
 
 if __name__ == '__main__':
+    # OJO: esto regenera content/ entero desde el volcado de WordPress y se
+    # lleva por delante todo lo editado después (la unificación entre idiomas,
+    # el botón de Lenguajeo, las páginas recuperadas del backup...).
+    # Se conserva para poder repetir la importación desde cero, no para el día
+    # a día. Para el día a día se editan los archivos de content/ a mano.
+    if '--rehacer-todo' not in sys.argv:
+        sys.exit(
+            'Este script reescribe content/ entero y borraría lo editado desde\n'
+            'la importación inicial. Si de verdad quieres rehacerlo todo:\n'
+            '    python3 tools/convert.py --rehacer-todo\n'
+            'Para recuperar solo las páginas del backup, usa en su lugar:\n'
+            '    python3 tools/importar-borradores.py <ruta al .sql>')
+
     pages = {p['slug']: p for p in json.load(open(f'{ROOT}/reference/pages.json'))}
     meta = {}
     for slug, page in pages.items():
