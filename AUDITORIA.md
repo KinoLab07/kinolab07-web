@@ -217,7 +217,19 @@ columna de FOTOGRAFÍAS. Fuera todos.
 ### Páginas que no existen en ninguna parte
 
 **DESARROLLO ARMÓNICO**, **CHROMATIC FILMIC TERRITORIES / TERRITORIOS FÍLMICOS
-CROMÁTICOS** y la **ALÉTHEIA fotográfica** aparecen como fichas con imagen y
-pie en las páginas FILMMAKER y PHOTOGRAPHY, pero **no son enlaces y no existe
+CROMÁTICOS** y la **ALÉTHEIA fotográfica** aparecían como fichas con imagen y
+pie en las páginas FILMMAKER y PHOTOGRAPHY, pero **no eran enlaces y no existía
 ninguna página detrás**, ni publicada ni en borrador, ni en la web ni en el
-backup. Nunca se escribieron. Para que tengan página hay que redactarlas.
+backup. Nunca se escribieron.
+
+Por decisión de Enrico (1 de octubre de 2026) se han retirado de las dos
+páginas y en los dos idiomas, junto con sus tres imágenes. FILMMAKER pasa de
+nueve fichas a ocho, repartidas 3+3+2 para que las columnas sigan midiendo un
+tercio; PHOTOGRAPHY pasa de cuatro a dos. Las imágenes siguen en el backup
+(`armonico.webp`, `Screen-Shot-2021-09-20-at-2.23.46-PM.png` y
+`Screen-Shot-2021-09-20-at-2.25.45-PM.png`) por si algún día se escriben.
+
+Al reconstruir FILMMAKER apareció además que la versión inglesa tenía cuatro
+`</div>` de más, residuo de haber quitado una envoltura: el navegador lo
+toleraba, pero el HTML estaba mal cerrado. Las dos versiones se generan ahora
+desde la misma lista de películas, así que no pueden volver a divergir.
