@@ -43,6 +43,7 @@ todo si se reutiliza en algún otro sitio.
 │   ├── css/style.css     toda la hoja de estilo
 │   ├── css/fuentes.css   las @font-face de Open Sans
 │   ├── fonts/            Open Sans (4 archivos woff2)
+│   ├── docs/             PDF enlazados desde el contenido
 │   ├── js/menu.js        menú hamburguesa y desplegables
 │   └── images/           65 imágenes
 ├── reference/            material original de WordPress (solo consulta)
@@ -115,12 +116,11 @@ tienen su propio menú y un selector EN/ES en la barra lateral.
 Todas las páginas del menú existen ya en los dos idiomas salvo las que siguen
 pendientes de contenido (ver más abajo).
 
-## Páginas pendientes de contenido
+## Páginas recuperadas del backup
 
-Solo quedan **GITHUB PROJECTS / PROYECTOS GITHUB**, a la espera de saber qué va
-dentro. Muestran un aviso de "en construcción".
+Todas las páginas del menú tienen ya contenido.
 
-Las otras doce que faltaban se recuperaron del backup de WordPress: EURITMIA,
+Las doce que faltaban se recuperaron del backup de WordPress: EURITMIA,
 THE STORY / EL CUENTO, MONICA, SIPAR, GAME / JUEGO y AT DAWN / A L'AUBE, en los
 dos idiomas. No se habían borrado, estaban guardadas como borrador, que es por
 lo que el menú daba 404 y por lo que no salían en la API pública.
