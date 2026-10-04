@@ -3,7 +3,7 @@
 __pycache__/
 .claude/
 
-# El backup de WordPress lleva hashes de contraseña dentro. Fuera del repo.
+# Volcados de la base de datos: nunca entran en el repositorio.
 entrega-enrico/
 *.sql
 *.sql.gz

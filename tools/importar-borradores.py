@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Recupera del backup de WordPress las doce páginas que faltaban.
 
-Las seis entradas rotas del menú FILMMAKER —y sus equivalentes en español—
-no se habían borrado: estaban guardadas como borrador, así que no salían por
-la API pública pero sí están en la base de datos.
+Algunas páginas del menú estaban guardadas como borrador, así que no salían
+por la API pública pero sí constan en la base de datos.
 
 Uso:
-    python3 tools/importar-borradores.py ~/Desktop/entrega-enrico/kinolab07.co/base-2026-09-30.sql
+    python3 tools/importar-borradores.py <ruta al volcado .sql>
 """
 import os, re, sys
 

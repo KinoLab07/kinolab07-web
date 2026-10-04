@@ -1,62 +1,10 @@
 # kinolab07.co
 
-Sitio estático de **Enrico Mandirola / KinoLab07**, reconstruido a partir de la web
-en WordPress (tema Cele) para poder editarlo sin depender de WordPress.
+Sitio de **Enrico Mandirola / KinoLab07** — cine experimental, fotografía y
+arte plástico. En línea en <https://www.kinolab07.co>.
 
-El resultado es visualmente idéntico al sitio publicado: mismos colores, misma
-tipografía (Open Sans 300/600), mismos anchos y los mismos puntos de corte
-responsive. Ya no carga jQuery, jQuery Migrate, wp-emoji ni Font Awesome, y la
-tipografía se sirve desde el propio sitio en lugar de pedírsela a Google.
-
-La fidelidad está verificada: la altura de cada página coincide con la publicada
-(ver la tabla en [AUDITORIA.md](AUDITORIA.md)) y el texto de las 22 páginas
-coincide palabra por palabra. La única diferencia intencionada es la home, donde
-se ha arreglado una imagen que en producción da 404.
-
-## ⚠️ El backup no debe subirse nunca a GitHub
-
-La carpeta `entrega-enrico` del escritorio **contiene contraseñas**. Su propia
-nota dice que el volcado va sin las tablas de usuarios, y es cierto para las
-tablas `DrB_*`, pero no para `kino_users`, `wpqx_users` ni las de clases: ahí
-hay dos cuentas de administrador con su hash de contraseña, el correo y tokens
-de sesión con direcciones IP.
-
-No está dentro de este repositorio y no debe entrar. Si alguna vez se copia
-aquí, Git la guardaría en el historial para siempre aunque luego se borre.
-
-Conviene además cambiar la contraseña de esas dos cuentas de WordPress, sobre
-todo si se reutiliza en algún otro sitio.
-
-
-## Estructura
-
-```
-.
-├── build.py              genera el sitio  ->  python3 build.py
-├── src/
-│   ├── site.json         menús, títulos de página, textos de la interfaz
-│   └── template.html     plantilla común de todas las páginas
-├── content/
-│   ├── en/*.html         contenido de cada página en inglés
-│   └── es/*.html         contenido de cada página en español
-├── assets/
-│   ├── css/style.css     toda la hoja de estilo
-│   ├── css/fuentes.css   las @font-face de Open Sans
-│   ├── fonts/            Open Sans (4 archivos woff2)
-│   ├── docs/             PDF enlazados desde el contenido
-│   ├── js/menu.js        menú hamburguesa y desplegables
-│   └── images/           65 imágenes
-├── reference/            material original de WordPress (solo consulta)
-│   ├── html/             las 22 páginas tal como las servía WordPress
-│   ├── pages.json        volcado de la REST API
-│   └── assets/css/       el CSS del tema Cele
-│
-├── index.html, *.html    páginas generadas en inglés
-└── es/*.html             páginas generadas en español
-```
-
-**Los `.html` de la raíz y de `es/` son generados: no los edites a mano.**
-Edita `content/` o `src/` y vuelve a ejecutar `python3 build.py`.
+Es un sitio estático: HTML y CSS escritos a mano, sin dependencias y sin
+proceso de compilación más allá de un script de Python.
 
 ## Cómo trabajar
 
@@ -65,84 +13,53 @@ python3 build.py                 # regenera las páginas
 python3 -m http.server 4707      # y abre http://localhost:4707
 ```
 
-No hace falta instalar nada: solo Python 3.
+Solo hace falta Python 3.
 
-### Probarlo entero sin conexión
-
-El botón "Ir a Lenguajeo" apunta al dominio real, así que sin internet no
-lleva a ninguna parte. Con `--local` apunta al servidor local del otro
-repositorio:
+### Probarlo sin conexión junto al sitio de Lenguajeo
 
 ```bash
 ./tools/probar-offline.sh
 ```
 
-Eso genera el sitio en modo local y levanta los dos: kinolab07 en el 4707 y
-Lenguajeo en el 4708. Si Lenguajeo no está en `../lenguajeo-web`, se le pasa la
-ruta como argumento.
+Genera el sitio en modo local y levanta los dos servidores. **Antes de
+publicar hay que volver a generar sin `--local`**, o el botón "Ir a Lenguajeo"
+se queda apuntando a `localhost`.
 
-**Antes de publicar hay que volver a generar sin `--local`**, o el botón se
-queda apuntando a `localhost`:
+## Estructura
 
-```bash
-python3 build.py
+```
+build.py              genera el sitio
+src/
+  site.json           menús, títulos de página, textos de la interfaz
+  template.html       plantilla común
+content/
+  en/*.html           contenido de cada página en inglés
+  es/*.html           contenido de cada página en español
+assets/
+  css/style.css       la hoja de estilo
+  css/fuentes.css     las @font-face de Open Sans
+  fonts/              Open Sans (4 archivos woff2)
+  js/menu.js          menú hamburguesa y desplegables
+  images/             las imágenes
+  docs/               PDF enlazados desde el contenido
+tools/                utilidades de mantenimiento
 ```
 
-Las dos direcciones están en `src/site.json`, en `lenguajeo_url` y
-`lenguajeo_url_local`.
+**Los `.html` de la raíz y de `es/` son generados: no los edites a mano.**
+Edita `content/` o `src/` y vuelve a ejecutar `python3 build.py`.
 
-Lo único que sigue necesitando internet son **los dos vídeos de Vimeo** de las
-páginas ALÉTHEIA y A L'AUBE, que están alojados en Vimeo y no en el sitio.
-Todo lo demás —tipografía incluida— se sirve desde el propio repositorio.
-
-### Cambiar el texto o las imágenes de una página
-Edita el fragmento correspondiente en `content/en/` o `content/es/` y reconstruye.
-Las rutas de imagen dentro de los fragmentos se escriben siempre como
-`assets/images/...`; `build.py` les añade el `../` cuando toca.
-
-### Cambiar el menú o los títulos
-Todo está en `src/site.json`.
-
-### Cambiar el diseño
-Todo está en `assets/css/style.css`, organizado por secciones y con las variables
-de color al principio.
+- Para cambiar un texto o una imagen: el archivo correspondiente de `content/`.
+- Para cambiar el menú o los títulos: `src/site.json`.
+- Para cambiar el diseño: `assets/css/style.css`, con las variables de color
+  al principio.
 
 ## Idiomas
 
-El sitio es bilingüe: inglés en la raíz, español en `es/`. En WordPress las
-páginas en español existían pero no eran accesibles desde ningún menú; aquí
-tienen su propio menú y un selector EN/ES en la barra lateral.
+Bilingüe: inglés en la raíz, español en `es/`. Las dos versiones tienen la
+misma estructura y las mismas imágenes a la misma medida; conviene mantenerlo
+así al añadir contenido.
 
-Todas las páginas del menú existen ya en los dos idiomas salvo las que siguen
-pendientes de contenido (ver más abajo).
+## Publicación
 
-## Páginas recuperadas del backup
-
-Todas las páginas del menú tienen ya contenido.
-
-Las doce que faltaban se recuperaron del backup de WordPress: EURITMIA,
-THE STORY / EL CUENTO, MONICA, SIPAR, GAME / JUEGO y AT DAWN / A L'AUBE, en los
-dos idiomas. No se habían borrado, estaban guardadas como borrador, que es por
-lo que el menú daba 404 y por lo que no salían en la API pública.
-
-Para repetir la importación:
-
-```bash
-python3 tools/importar-borradores.py ~/Desktop/entrega-enrico/kinolab07.co/base-2026-09-30.sql
-```
-
-## Publicar en GitHub Pages
-
-El repositorio ya está listo: incluye `.nojekyll` y las páginas se sirven desde
-la raíz.
-
-1. Crea el repositorio en GitHub y súbelo.
-2. En *Settings → Pages*, elige *Deploy from a branch*, rama `main`, carpeta `/ (root)`.
-3. Para usar el dominio propio, añade un archivo `CNAME` con `www.kinolab07.co`
-   y apunta el DNS a GitHub Pages.
-
-## Herramientas
-
-`tools/convert.py` fue el conversor de un solo uso que tradujo el HTML de bloques
-de WordPress (`reference/pages.json`) a los fragmentos limpios de `content/`.
-Se conserva para poder repetir la importación si hiciera falta.
+GitHub Pages desde la rama `main`, carpeta raíz. El archivo `CNAME` fija el
+dominio y los certificados se renuevan solos.
